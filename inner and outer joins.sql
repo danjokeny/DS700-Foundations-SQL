@@ -10,7 +10,8 @@ SELECT DepartmentID,GroupName, name
 	on p.BusinessEntityID = phone.BusinessEntityID
   order by 'Name';
 
-/* this is an left outer join */
+/* this is an left outer join 
+all people, regardless if they are employees or not 19K rows*/
   select  p.Title, p.FirstName, p.MiddleName, p.LastName , 
   e.HireDate, e.JobTitle, e.BirthDate, e.MaritalStatus, e.Gender, p.PersonType, p.BusinessEntityID
   from Person.Person as p
@@ -20,3 +21,30 @@ order by p.LastName;
   
   select top 10 * from HumanResources.Employee;
   select top 10 * from Person.Person
+
+  /* this is an right outer join 
+  only the 290 employees are returned */
+  select  p.Title, p.FirstName, p.MiddleName, p.LastName , 
+  e.HireDate, e.JobTitle, e.BirthDate, e.MaritalStatus, e.Gender, p.PersonType, p.BusinessEntityID
+  from Person.Person as p
+	right join HumanResources.Employee as e
+	on p.BusinessEntityID = e.BusinessEntityID
+order by p.LastName;
+
+  /* this is an full outer join 
+  only the 290 employees are returned */
+  select  p.Title, p.FirstName, p.MiddleName, p.LastName , 
+  e.HireDate, e.JobTitle, e.BirthDate, e.MaritalStatus, e.Gender, p.PersonType, p.BusinessEntityID
+  from Person.Person as p
+	full join HumanResources.Employee as e
+	on p.BusinessEntityID = e.BusinessEntityID
+order by p.LastName;
+
+  /* this is an full outer join 
+  only the 290 employees are returned */
+  select  p.Title, p.FirstName, p.MiddleName, p.LastName , 
+  eph.Rate, eph.RateChangeDate,  p.PersonType, p.BusinessEntityID
+  from Person.Person as p
+	full join HumanResources.EmployeePayHistory as eph
+	on p.BusinessEntityID = eph.BusinessEntityID
+order by p.LastName;
