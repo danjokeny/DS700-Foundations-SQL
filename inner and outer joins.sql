@@ -32,7 +32,7 @@ order by p.LastName;
 order by p.LastName;
 
   /* this is an full outer join 
-  only the 290 employees are returned */
+  over 19K returned all rows on both tables */
   select  p.Title, p.FirstName, p.MiddleName, p.LastName , 
   e.HireDate, e.JobTitle, e.BirthDate, e.MaritalStatus, e.Gender, p.PersonType, p.BusinessEntityID
   from Person.Person as p
@@ -41,10 +41,19 @@ order by p.LastName;
 order by p.LastName;
 
   /* this is an full outer join 
-  only the 290 employees are returned */
+ gets all people and employee rates */
   select  p.Title, p.FirstName, p.MiddleName, p.LastName , 
   eph.Rate, eph.RateChangeDate,  p.PersonType, p.BusinessEntityID
   from Person.Person as p
 	full join HumanResources.EmployeePayHistory as eph
 	on p.BusinessEntityID = eph.BusinessEntityID
 order by p.LastName;
+
+select top 10 * from HumanResources.EmployeePayHistory;
+
+/* cross join -- this is a cartesian product*/
+select  c1.Name, c2.Name from person.ContactType c1
+cross join person.ContactType c2;
+
+
+select  * from person.ContactType;
