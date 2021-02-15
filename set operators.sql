@@ -8,7 +8,7 @@ Union
 
 Select p.BusinessEntityID, p.FirstName, p.LastName
 from Person.Person as p
-where p.FirstName like 'E%'
+where p.FirstName like 'E%';
 
 /* this is a intersect */
 Select p.BusinessEntityID, p.FirstName, p.LastName
@@ -19,4 +19,16 @@ intersect
 
 Select p.BusinessEntityID, p.FirstName, p.LastName
 from Person.Person as p
-where p.FirstName like '%b%'
+where p.FirstName like '%b%';
+
+
+/* this is a except */
+Select p.BusinessEntityID, p.FirstName, p.LastName
+from Person.Person as p
+where p.FirstName like '%a%'
+
+except 
+
+Select p.BusinessEntityID, p.FirstName, p.LastName
+from Person.Person as p
+where p.FirstName like '%b%';
