@@ -23,10 +23,37 @@ where D.head = P.EmployeeID;
 select P.Name, A.ExaminationRoom
 from [ScrubsHospital].[dbo].Patient as P, [ScrubsHospital].[dbo].Appointment as A
 where P.SSN = A.Patient and
-	  A.ExaminationRoom like 'A';
+	  convert(varchar(max),A.ExaminationRoom) = 'A';
 
 
 /*Question 4
 4.	List all the unique patient names who got an appointment in room “B”. [5pt] */
+select distinct P.Name, convert(varchar(max),A.ExaminationRoom) 
+from [ScrubsHospital].[dbo].Patient as P, [ScrubsHospital].[dbo].Appointment as A
+where P.SSN = A.Patient and
+	  convert(varchar(max),A.ExaminationRoom) = 'B';
+
+/*Question 5
+5.	List the names of all physicians who are trained in a particular medical procedure along with the name of the procedure. 
+Also list their certification expiration date. You should have the following columns in your output- Physician name, Med Procedure Name, Certificate expiration. [10pt] */
+Select P.Name, MP.Name, T.CertificationExpires
+from [ScrubsHospital].[dbo].Physician as P, [ScrubsHospital].[dbo].Trained_In as T, [ScrubsHospital].[dbo].MedProcedures as MP
+where p.EmployeeID = T.Physician
+and	T.Treatment = MP.Code
+
+/*
+6.	List all the physicians with department who are not affiliated. Your output should contain columns with the names – Physician name, Department Name, Physician Position. [10pt]
+
+7.	List the names of patients and their PCP only if their PCP is trained in a medical procedure. [10pt]
+
+8.	List the names of patients and the number of physicians they have taken appointments with only if the number of physicians is greater than 1. [10pt]
+
+9.	List all the patients along with their physician names, nurse names and room numbers when the patient has an appointment anytime between 4/21/2019 and 4/24/2019. [10pt]
+
+10.	List all the patient names and their medications for patients who did not make an appointment. [10pt]
+
+11.	List the count of number of rooms that are unavailable on each block on each floor. Make sure to order the list by floor and block number. Your output should have the columns – “Floor”, “Block” and “# of unavailable rooms” [10pt]
+
+12.	List the floor where there are minimum number of rooms unavailable. Your output should have the floor number, max number of rooms possible on the floor and the number of rooms unavailable. [10pt]*/
 
 
