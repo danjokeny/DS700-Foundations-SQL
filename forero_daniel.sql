@@ -3,6 +3,8 @@
   /*DS700 Foundations of Data Science
 Daniel Forero */
 
+use ScrubsHospital;
+
 /* Question 1 
 1.	List the details of all nurses. In your output, generate an additional column called “Comment” and populate it with the text “Send registration reminder” if the nurse is not registered. [5pt] */
 SELECT N.EmployeeID, N.Name, N.Position,  N.Registered, N.SSN,
@@ -39,11 +41,20 @@ Also list their certification expiration date. You should have the following col
 Select P.Name, MP.Name, T.CertificationExpires
 from [ScrubsHospital].[dbo].Physician as P, [ScrubsHospital].[dbo].Trained_In as T, [ScrubsHospital].[dbo].MedProcedures as MP
 where p.EmployeeID = T.Physician
-and	T.Treatment = MP.Code
+and	T.Treatment = MP.Code;
 
+/* Question 6
+6.	List all the physicians with department who are not affiliated. Your output should contain columns with the names – Physician name, Department Name, Physician Position. [10pt]*/
+Select P.Name, D.Name, P.Position
+from [ScrubsHospital].[dbo].Physician as P, [ScrubsHospital].[dbo].Department as D, [ScrubsHospital].[dbo].Affiliated_With as A
+where A.PrimaryAffiliation = 0 
+and A.Physician = p.EmployeeID
+and A.Department = D.DepartmentID;
+
+select * from Department
+
+select * from Affiliated_With
 /*
-6.	List all the physicians with department who are not affiliated. Your output should contain columns with the names – Physician name, Department Name, Physician Position. [10pt]
-
 7.	List the names of patients and their PCP only if their PCP is trained in a medical procedure. [10pt]
 
 8.	List the names of patients and the number of physicians they have taken appointments with only if the number of physicians is greater than 1. [10pt]
