@@ -51,12 +51,15 @@ where A.PrimaryAffiliation = 0
 and A.Physician = p.EmployeeID
 and A.Department = D.DepartmentID;
 
-select * from Department
+/*Question 7
+7.	List the names of patients and their PCP only if their PCP is trained in a medical procedure. [10pt]*/
+select distinct P.Name, DR.Name
+from [ScrubsHospital].[dbo].Patient as P, [ScrubsHospital].[dbo].Trained_In as T, [ScrubsHospital].[dbo].Physician as DR
+where P.PCP = T.Physician
+and  DR.EmployeeID = P.PCP;
 
-select * from Affiliated_With
+
 /*
-7.	List the names of patients and their PCP only if their PCP is trained in a medical procedure. [10pt]
-
 8.	List the names of patients and the number of physicians they have taken appointments with only if the number of physicians is greater than 1. [10pt]
 
 9.	List all the patients along with their physician names, nurse names and room numbers when the patient has an appointment anytime between 4/21/2019 and 4/24/2019. [10pt]
