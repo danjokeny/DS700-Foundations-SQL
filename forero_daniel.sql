@@ -67,8 +67,8 @@ select  P.Name, COUNT( distinct A.Physician) PhysicianCount
 from [ScrubsHospital].[dbo].Patient as P, [ScrubsHospital].[dbo].Appointment as A, [ScrubsHospital].[dbo].Physician as DR
 where P.SSN = A.Patient
 and A.Physician = DR.EmployeeID
-and PhysicianCount > 1
 group by P.Name
+having COUNT( distinct A.Physician) > 1
 order by  P.Name;
 
 
