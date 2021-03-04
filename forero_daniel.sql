@@ -59,15 +59,29 @@ where P.PCP = T.Physician
 and  DR.EmployeeID = P.PCP;
 
 
-/*
-8.	List the names of patients and the number of physicians they have taken appointments with only if the number of physicians is greater than 1. [10pt]
+/*Question 8
+8.	List the names of patients and the number of physicians they have taken appointments with only if the number of physicians is greater than 1. [10pt]*/
 
+
+select  P.Name, COUNT( distinct A.Physician) PhysicianCount
+from [ScrubsHospital].[dbo].Patient as P, [ScrubsHospital].[dbo].Appointment as A, [ScrubsHospital].[dbo].Physician as DR
+where P.SSN = A.Patient
+and A.Physician = DR.EmployeeID
+and PhysicianCount > 1
+group by P.Name
+order by  P.Name;
+
+
+
+
+/*
 9.	List all the patients along with their physician names, nurse names and room numbers when the patient has an appointment anytime between 4/21/2019 and 4/24/2019. [10pt]
 
+/*
 10.	List all the patient names and their medications for patients who did not make an appointment. [10pt]
-
+/*
 11.	List the count of number of rooms that are unavailable on each block on each floor. Make sure to order the list by floor and block number. Your output should have the columns – “Floor”, “Block” and “# of unavailable rooms” [10pt]
-
+/*
 12.	List the floor where there are minimum number of rooms unavailable. Your output should have the floor number, max number of rooms possible on the floor and the number of rooms unavailable. [10pt]*/
 
 
