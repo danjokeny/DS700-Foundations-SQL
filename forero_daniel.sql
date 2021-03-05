@@ -47,7 +47,7 @@ and	T.Treatment = MP.Code;
 
 /* Question 6
 6.	List all the physicians with department who are not affiliated. Your output should contain columns with the names – Physician name, Department Name, Physician Position. [10pt]*/
-Select P.Name, D.Name, P.Position
+Select P.Name Physicians, D.Name Department, P.Position
 from [ScrubsHospital].[dbo].Physician as P, [ScrubsHospital].[dbo].Department as D, [ScrubsHospital].[dbo].Affiliated_With as A
 where A.PrimaryAffiliation = 0 
 and A.Physician = p.EmployeeID
@@ -55,7 +55,7 @@ and A.Department = D.DepartmentID;
 
 /*Question 7
 7.	List the names of patients and their PCP only if their PCP is trained in a medical procedure. [10pt]*/
-select distinct P.Name, DR.Name
+select distinct P.Name Patient, DR.Name PCP
 from [ScrubsHospital].[dbo].Patient as P, [ScrubsHospital].[dbo].Trained_In as T, [ScrubsHospital].[dbo].Physician as DR
 where P.PCP = T.Physician
 and  DR.EmployeeID = P.PCP;
@@ -63,7 +63,7 @@ and  DR.EmployeeID = P.PCP;
 
 /*Question 8
 8.	List the names of patients and the number of physicians they have taken appointments with only if the number of physicians is greater than 1. [10pt]*/
-select  P.Name, COUNT( distinct A.Physician) PhysicianCount
+select  P.Name Patient, COUNT( distinct A.Physician) PhysicianCount
 from [ScrubsHospital].[dbo].Patient as P, [ScrubsHospital].[dbo].Appointment as A, [ScrubsHospital].[dbo].Physician as DR
 where P.SSN = A.Patient
 and A.Physician = DR.EmployeeID
