@@ -84,6 +84,22 @@ and A.PrepNurse = N.EmployeeID
 
 /*Question 10 
 10.	List all the patient names and their medications for patients who did not make an appointment. [10pt] */
+Select P.Name Patient, MED.Name 
+from [ScrubsHospital].[dbo].Patient as P, [ScrubsHospital].[dbo].Prescribes as RX, [ScrubsHospital].[dbo].Medication as MED
+where P.SSN = RX.Patient
+and RX.Medication = MED.Code
+
+Select * 
+from [ScrubsHospital].[dbo].Patient
+
+Select * 
+from [ScrubsHospital].[dbo].Appointment
+
+Select * 
+from [ScrubsHospital].[dbo].Prescribes
+
+Select * 
+from [ScrubsHospital].[dbo].Medication
 
 
 /*
