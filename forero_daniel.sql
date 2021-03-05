@@ -22,10 +22,12 @@ where D.head = P.EmployeeID;
 
 /*Question 3
 3.	List the names of all patients and the number of appointments they have made where the examination room was “A”. [5pt] */
-select P.Name, A.ExaminationRoom
+select P.Name,count(  convert(varchar,A.ExaminationRoom)) 'count appts in room A'
 from [ScrubsHospital].[dbo].Patient as P, [ScrubsHospital].[dbo].Appointment as A
-where P.SSN = A.Patient and
-	  convert(varchar(max),A.ExaminationRoom) = 'A';
+where P.SSN = A.Patient 
+and A.ExaminationRoom like 'A'
+group by P.Name
+
 
 
 /*Question 4
