@@ -22,25 +22,25 @@ where D.head = P.EmployeeID;
 
 /*Question 3
 3.	List the names of all patients and the number of appointments they have made where the examination room was “A”. [5pt] */
-select P.Name,count(  convert(varchar,A.ExaminationRoom)) 'count appts in room A'
+select P.Name,count( case
+						when convert(varchar,A.ExaminationRoom) = 'A' then 1
+					end ) 'count appts in room A'
 from [ScrubsHospital].[dbo].Patient as P, [ScrubsHospital].[dbo].Appointment as A
 where P.SSN = A.Patient 
-and A.ExaminationRoom like 'A'
-group by P.Name
-
+group by P.Name;
 
 
 /*Question 4
 4.	List all the unique patient names who got an appointment in room “B”. [5pt] */
-select distinct P.Name, convert(varchar(max),A.ExaminationRoom) 
+select distinct P.Name, convert(varchar(max),A.ExaminationRoom) ExamRoom
 from [ScrubsHospital].[dbo].Patient as P, [ScrubsHospital].[dbo].Appointment as A
-where P.SSN = A.Patient and
-	  convert(varchar(max),A.ExaminationRoom) = 'B';
+where P.SSN = A.Patient 
+and convert(varchar(max),A.ExaminationRoom) = 'B';
 
 /*Question 5
 5.	List the names of all physicians who are trained in a particular medical procedure along with the name of the procedure. 
 Also list their certification expiration date. You should have the following columns in your output- Physician name, Med Procedure Name, Certificate expiration. [10pt] */
-Select P.Name, MP.Name, T.CertificationExpires
+Select P.Name Physician, MP.Name MedicalProcedure, T.CertificationExpires
 from [ScrubsHospital].[dbo].Physician as P, [ScrubsHospital].[dbo].Trained_In as T, [ScrubsHospital].[dbo].MedProcedures as MP
 where p.EmployeeID = T.Physician
 and	T.Treatment = MP.Code;
