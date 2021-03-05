@@ -72,29 +72,19 @@ order by  P.Name;
 
 /*Qestion 9
 9.	List all the patients along with their physician names, nurse names and room numbers when the patient has an appointment anytime between 4/21/2019 and 4/24/2019. [10pt]*/
+select P.Name Patient, DR.Name Physician, N.Name Nurse, A.ExaminationRoom 'Room Number'
+from [ScrubsHospital].[dbo].Appointment as A, [ScrubsHospital].[dbo].Patient as P, [ScrubsHospital].[dbo].Physician as DR, [ScrubsHospital].[dbo].Nurse as N
+where A.Start > convert(date,'2019-04-20',102)
+and A.[End] < convert(date,'2019-04-25',102)
+and A.Patient = P.SSN
+and A.Physician = DR.EmployeeID
+and A.PrepNurse = N.EmployeeID
 
-select *
-from [ScrubsHospital].[dbo].Appointment as A
-where A.Start >= '2019-04-21' 
-and A.End < '2019-04-24'
-order by A.Start
+/*Question 10 
+10.	List all the patient names and their medications for patients who did not make an appointment. [10pt] */
 
-select A.Patient, A.Physician, A.PrepNurse, A.ExaminationRoom, A.Start, A.[End] 
-from [ScrubsHospital].[dbo].Appointment as A
-where  A.[End] <= '2019-04-24'
-
-select A.Patient, A.Physician, A.PrepNurse, A.ExaminationRoom, A.Start, A.[End] 
-from [ScrubsHospital].[dbo].Appointment as A
-where A.start >= '2019-04-21' 
-and A.[End] <= '2019-04-24'
-
-Select *  from patient
-select * from physician
-Select * from appointment
 
 /*
-10.	List all the patient names and their medications for patients who did not make an appointment. [10pt]
-
 11.	List the count of number of rooms that are unavailable on each block on each floor. Make sure to order the list by floor and block number. Your output should have the columns – “Floor”, “Block” and “# of unavailable rooms” [10pt]
 
 12.	List the floor where there are minimum number of rooms unavailable. Your output should have the floor number, max number of rooms possible on the floor and the number of rooms unavailable. [10pt]*/
