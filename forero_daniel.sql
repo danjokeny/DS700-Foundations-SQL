@@ -7,7 +7,7 @@ use ScrubsHospital;
 
 /* Question 1 
 1.	List the details of all nurses. In your output, generate an additional column called “Comment” and populate it with the text “Send registration reminder” if the nurse is not registered. [5pt] */
-SELECT N.EmployeeID, N.Name, N.Position,  N.Registered, N.SSN,
+SELECT N.EmployeeID, N.Name Nurse, N.Position,  N.Registered, N.SSN,
   	case
 		when N.Registered = 0 then 'Send registration reminder'
 	end as Comment
@@ -15,7 +15,7 @@ SELECT N.EmployeeID, N.Name, N.Position,  N.Registered, N.SSN,
 
 /*Question 2
 2.	List all the departments and their head’s names along with the position of the head. [5pt]  */
-Select D.Name, P.Name, P.Position
+Select D.Name Department, P.Name DeptHead, P.Position
 from [ScrubsHospital].[dbo].[Department] as D, [ScrubsHospital].[dbo].Physician as P
 where D.head = P.EmployeeID;
 
