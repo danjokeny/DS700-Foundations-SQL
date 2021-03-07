@@ -84,17 +84,43 @@ and A.PrepNurse = N.EmployeeID
 
 /*Question 10 
 10.	List all the patient names and their medications for patients who did not make an appointment. [10pt] */
-Select P.Name Patient, MED.Name Medicaion
+Select P.Name Patient, MED.Name Medication
 from [ScrubsHospital].[dbo].Patient as P, [ScrubsHospital].[dbo].Prescribes as RX, [ScrubsHospital].[dbo].Medication as MED
 where P.SSN = RX.Patient
 and RX.Medication = MED.Code
 and RX.Appointment is null
 
-Select * from Prescribes
 
 /*Question 11
-11.	List the count of number of rooms that are unavailable on each block on each floor. Make sure to order the list by floor and block number. Your output should have the columns – “Floor”, “Block” and “# of unavailable rooms” [10pt]
+11.	List the count of number of rooms that are unavailable on each block on each floor. 
+Make sure to order the list by floor and block number. 
+Your output should have the columns – “Floor”, “Block” and “# of unavailable rooms” [10pt]*/
 
-12.	List the floor where there are minimum number of rooms unavailable. Your output should have the floor number, max number of rooms possible on the floor and the number of rooms unavailable. [10pt]*/
+select R.BlockFloor as Floor, R.BlockCode as Block, sum( ( case
+											when R.Unavailable = 1 then 1
+											else 0		
+											end )  ) as '# of unavailable rooms'
+from [ScrubsHospital].[dbo].Room as R
+group by R.BlockFloor, R.BlockCode
+order by R.BlockFloor, R.BlockCode
+
+
+
+/*Question 12
+12.	List the floor where there are minimum number of rooms unavailable. 
+Your output should have the floor number, max number of rooms 
+possible on the floor and the number of rooms unavailable. [10pt]*/
+select top 1 * from (
+select R.BlockFloor AS Floor, count(  R.Unavailable  ) as 'Max # of rooms on the floor', 
+		sum( ( case
+				when R.Unavailable = 1 then 1
+				else 0		
+				end )  ) as MaxRoom
+from [ScrubsHospital].[dbo].Room as R
+group by R.BlockFloor
+) as MinUnavail
+order by MaxRoom
+
+
 
  
