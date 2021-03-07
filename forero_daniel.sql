@@ -111,15 +111,15 @@ order by R.BlockFloor, R.BlockCode;
 Your output should have the floor number, max number of rooms 
 possible on the floor and the number of rooms unavailable. [10pt]*/
 select top 1 * from (
-select R.BlockFloor AS Floor, count(  R.Unavailable  ) as 'Max # of rooms on the floor', 
-		sum( ( case
-				when R.Unavailable = 1 then 1
-				else 0		
-				end )  ) as NumRoomsUnavail
-from [ScrubsHospital].[dbo].Room as R
-group by R.BlockFloor
-) as MinUnavail
+	select R.BlockFloor AS Floor, count(  R.Unavailable  ) as 'Max # of rooms on the floor', 
+			sum( ( case
+					when R.Unavailable = 1 then 1
+					else 0		
+					end )  ) as NumRoomsUnavail
+	from [ScrubsHospital].[dbo].Room as R
+	group by R.BlockFloor) as MinUnavail 
 order by NumRoomsUnavail;
+
 
 
 
