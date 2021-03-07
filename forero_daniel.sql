@@ -84,25 +84,15 @@ and A.PrepNurse = N.EmployeeID
 
 /*Question 10 
 10.	List all the patient names and their medications for patients who did not make an appointment. [10pt] */
-Select P.Name Patient, MED.Name 
+Select P.Name Patient, MED.Name Medicaion
 from [ScrubsHospital].[dbo].Patient as P, [ScrubsHospital].[dbo].Prescribes as RX, [ScrubsHospital].[dbo].Medication as MED
 where P.SSN = RX.Patient
 and RX.Medication = MED.Code
+and RX.Appointment is null
 
-Select * 
-from [ScrubsHospital].[dbo].Patient
+Select * from Prescribes
 
-Select * 
-from [ScrubsHospital].[dbo].Appointment
-
-Select * 
-from [ScrubsHospital].[dbo].Prescribes
-
-Select * 
-from [ScrubsHospital].[dbo].Medication
-
-
-/*
+/*Question 11
 11.	List the count of number of rooms that are unavailable on each block on each floor. Make sure to order the list by floor and block number. Your output should have the columns – “Floor”, “Block” and “# of unavailable rooms” [10pt]
 
 12.	List the floor where there are minimum number of rooms unavailable. Your output should have the floor number, max number of rooms possible on the floor and the number of rooms unavailable. [10pt]*/
