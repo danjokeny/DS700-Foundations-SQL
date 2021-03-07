@@ -80,7 +80,7 @@ where A.Start > convert(date,'2019-04-20',102)
 and A.[End] < convert(date,'2019-04-25',102)
 and A.Patient = P.SSN
 and A.Physician = DR.EmployeeID
-and A.PrepNurse = N.EmployeeID
+and A.PrepNurse = N.EmployeeID;
 
 /*Question 10 
 10.	List all the patient names and their medications for patients who did not make an appointment. [10pt] */
@@ -88,7 +88,7 @@ Select P.Name Patient, MED.Name Medication
 from [ScrubsHospital].[dbo].Patient as P, [ScrubsHospital].[dbo].Prescribes as RX, [ScrubsHospital].[dbo].Medication as MED
 where P.SSN = RX.Patient
 and RX.Medication = MED.Code
-and RX.Appointment is null
+and RX.Appointment is null;
 
 
 /*Question 11
@@ -102,7 +102,7 @@ select R.BlockFloor as Floor, R.BlockCode as Block, sum( ( case
 											end )  ) as '# of unavailable rooms'
 from [ScrubsHospital].[dbo].Room as R
 group by R.BlockFloor, R.BlockCode
-order by R.BlockFloor, R.BlockCode
+order by R.BlockFloor, R.BlockCode;
 
 
 
@@ -115,11 +115,11 @@ select R.BlockFloor AS Floor, count(  R.Unavailable  ) as 'Max # of rooms on the
 		sum( ( case
 				when R.Unavailable = 1 then 1
 				else 0		
-				end )  ) as MaxRoom
+				end )  ) as NumRoomsUnavail
 from [ScrubsHospital].[dbo].Room as R
 group by R.BlockFloor
 ) as MinUnavail
-order by MaxRoom
+order by NumRoomsUnavail;
 
 
 
