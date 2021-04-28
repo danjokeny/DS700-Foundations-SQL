@@ -36,8 +36,14 @@ and ((vvs.race != vvs2.race) or (vvs.gender != vvs2.gender))
 and pv.patient_nbr = 453267
 
 
+/*3.	Write and execute a SQL query to list all the patient data for all encounters. 
+Even if patient data is missing in other tables, you still need to list the patient_nbr and encounter_id 
+in your output. Your output should list all the columns (without repeating them) starting with 
+encounter_id, patient_nbr… and it should be ordered by patient_nbr and then encounter_id. [10PTS]*/
 
-
+select pv.encounter_id pv_enc, pv.patient_nbr pv_patient_nbr
+from PatientVisit as pv
+order by pv_patient_nbr, pv_enc
 
 
 select top 10 * from patient as p 
