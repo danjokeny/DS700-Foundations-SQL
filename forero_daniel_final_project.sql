@@ -33,7 +33,7 @@ and pv.encounter_id < pv2.encounter_id
 and pv.encounter_id = vvs.encounter_id
 and pv2.encounter_id = vvs2.encounter_id
 and ((vvs.race != vvs2.race) or (vvs.gender != vvs2.gender))
-and pv.patient_nbr = 453267
+
 
 
 /*3.	Write and execute a SQL query to list all the patient data for all encounters. 
@@ -66,23 +66,3 @@ and pv.encounter_id = vd.encounter_id
 and pv.encounter_id = vm.encounter_id
 and pv.encounter_id = vsc.encounter_id
 order by pv_patient_nbr, pv_enc
-
-
-
-select top 10 * from patient as p 
-select top 10 * from PatientVisit as pv
-
-select top 10 * from VisitSummary as vs
-select top 10 * from VisitVitalStat as vvs
-select top 10 * from VisitDiagnostic as vd
-select top 10 * from VisitMedication as vm
-select top 10 * from VisitSummaryCount as vsc
-
-
-
-
-select count(*) from patient as p 
-select count(*) from PatientVisit as pv
-select count(*) from VisitSummary as vs
-select count(*) from VisitVitalStat as vvs
-
