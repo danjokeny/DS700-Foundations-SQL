@@ -47,7 +47,8 @@ vs.time_in_hospital vs_time_in_hosp, vs.payer_code vs_payer, vs.medical_specialt
 vvs.age vvs_age, vvs.weight vvs_weight, vvs.race vvs_race, vvs.gender vvs_gender,
 vd.diag_1 vd_diag1, vd.diag_2 vd_diag2, vd.diag_3 vd_diag3, vd.number_diagnoses vd_num_diag,
 vm.max_glu_serum vm_max_glu_serum, vm.A1Cresult vm_A1C, vm.metformin vm_metaformin, 
-vm.repaglinide vm_repaglinide, vm.chlorpropamide vm_chlorpropamide, vm.acetohexamide vm_acetohexamide,
+vm.repaglinide vm_repaglinide, vm.nateglinide vm_nateglinide,
+vm.chlorpropamide vm_chlorpropamide, vm.glimepiride vm_glimepiride, vm.acetohexamide vm_acetohexamide,
 vm.glipizide vm_glipizide, vm.glyburide vm_glyburide, vm.tolbutamide vm_tolbutamide,
 vm.pioglitazone vm_pioglitazone, vm.rosiglitazone vm_rosiglitazone, vm.acarbose vm_acarbose,
 vm.miglitol vm_miglitol, vm.troglitazone vm_troglitazone, vm.tolazamide vm_tolazamide, 
@@ -82,7 +83,8 @@ vs.time_in_hospital vs_time_in_hosp, vs.payer_code vs_payer, vs.medical_specialt
 vvs.age vvs_age, vvs.weight vvs_weight, vvs.race vvs_race, vvs.gender vvs_gender,
 vd.diag_1 vd_diag1, vd.diag_2 vd_diag2, vd.diag_3 vd_diag3, vd.number_diagnoses vd_num_diag,
 vm.max_glu_serum vm_max_glu_serum, vm.A1Cresult vm_A1C, vm.metformin vm_metaformin, 
-vm.repaglinide vm_repaglinide, vm.chlorpropamide vm_chlorpropamide, vm.acetohexamide vm_acetohexamide,
+vm.repaglinide vm_repaglinide, vm.nateglinide vm_nateglinide,
+vm.chlorpropamide vm_chlorpropamide, vm.glimepiride vm_glimepiride, vm.acetohexamide vm_acetohexamide,
 vm.glipizide vm_glipizide, vm.glyburide vm_glyburide, vm.tolbutamide vm_tolbutamide,
 vm.pioglitazone vm_pioglitazone, vm.rosiglitazone vm_rosiglitazone, vm.acarbose vm_acarbose,
 vm.miglitol vm_miglitol, vm.troglitazone vm_troglitazone, vm.tolazamide vm_tolazamide, 
@@ -101,3 +103,4 @@ and pv.encounter_id = vd.encounter_id
 and pv.encounter_id = vm.encounter_id
 and pv.encounter_id = vsc.encounter_id
 order by pv_patient_nbr, pv_enc
+
