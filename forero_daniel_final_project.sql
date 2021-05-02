@@ -1,7 +1,7 @@
 
 
-  /*DS700 Foundations of Data Science
-  Final project SQL file
+/*DS700 Foundations of Data Science
+Final project SQL file
 Daniel Forero */
 
 use Diabetes;
@@ -25,8 +25,8 @@ Your output should have patient number, old and new race values, old and new gen
 
 select pv.patient_nbr, pv.encounter_id, pv2.encounter_id, 
 vvs.encounter_id, vvs2.encounter_id,
-vvs.race, vvs2.race, 
-vvs.gender, vvs2.gender
+vvs.race race1, vvs2.race race2, 
+vvs.gender gender1, vvs2.gender gender2
 from  PatientVisit as pv, PatientVisit as pv2, VisitVitalStat as vvs, VisitVitalStat as vvs2
 where pv.patient_nbr = pv2.patient_nbr
 and pv.encounter_id < pv2.encounter_id
