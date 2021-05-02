@@ -59,14 +59,22 @@ vm.metformin_pioglitazone vm_metformin_pioglitazone, vm.change vm_change, vm.dia
 vsc.num_lab_procedures vsc_num_lab_proc, vsc.num_procedures vsc_num_proc, 
 vsc.num_medications vsc_num_meds, vsc.number_outpatient vsc_num_outpatient, 
 vsc.number_emergency vsc_num_emergency, vsc.number_inpatient vsc_num_inpatient
-from PatientVisit as pv, VisitSummary as vs, VisitVitalStat as vvs, VisitDiagnostic as vd,
-	 VisitMedication as vm, VisitSummaryCount as vsc
-where pv.encounter_id = vs.encounter_id
-and pv.encounter_id = vvs.encounter_id
-and pv.encounter_id = vd.encounter_id
-and pv.encounter_id = vm.encounter_id
-and pv.encounter_id = vsc.encounter_id
+from PatientVisit as pv
+left join VisitSummary as vs
+	on pv.encounter_id = vs.encounter_id
+left join VisitVitalStat as vvs
+	on pv.encounter_id = vvs.encounter_id
+left join VisitDiagnostic as vd
+	on pv.encounter_id = vd.encounter_id
+left join VisitMedication as vm
+	on pv.encounter_id = vm.encounter_id
+left join VisitSummaryCount as vsc
+	on pv.encounter_id = vsc.encounter_id
 order by pv_patient_nbr, pv_enc
+
+
+
+
 
 
 
@@ -95,12 +103,19 @@ vm.metformin_pioglitazone vm_metformin_pioglitazone, vm.change vm_change, vm.dia
 vsc.num_lab_procedures vsc_num_lab_proc, vsc.num_procedures vsc_num_proc, 
 vsc.num_medications vsc_num_meds, vsc.number_outpatient vsc_num_outpatient, 
 vsc.number_emergency vsc_num_emergency, vsc.number_inpatient vsc_num_inpatient
-from PatientVisit as pv, VisitSummary as vs, VisitVitalStat as vvs, VisitDiagnostic as vd,
-	 VisitMedication as vm, VisitSummaryCount as vsc
-where pv.encounter_id = vs.encounter_id
-and pv.encounter_id = vvs.encounter_id
-and pv.encounter_id = vd.encounter_id
-and pv.encounter_id = vm.encounter_id
-and pv.encounter_id = vsc.encounter_id
+from PatientVisit as pv
+inner join VisitSummary as vs
+	on pv.encounter_id = vs.encounter_id
+inner join VisitVitalStat as vvs
+	on pv.encounter_id = vvs.encounter_id
+inner join VisitDiagnostic as vd
+	on pv.encounter_id = vd.encounter_id
+inner join VisitMedication as vm
+	on pv.encounter_id = vm.encounter_id
+inner join VisitSummaryCount as vsc
+	on pv.encounter_id = vsc.encounter_id
 order by pv_patient_nbr, pv_enc
+
+
+
 
